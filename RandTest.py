@@ -18,10 +18,11 @@ min=0
 max=0
 tot=0
 
-f = open('random','r')
+f = open('random','rb')
 while 1==1 :
     n = f.read(1)
-    if ( n == "" ):
+    print(">",n)
+    if ( len(n) != 1 ):
         break
     i = struct.unpack('B',n)[0]
     values[i] += 1
@@ -37,9 +38,9 @@ for i in range (0,256):
         min = values[i]
 
 # Results
-print "----"
-print 'Value ', values.index(max), 'appeared', max, 'times'
-print 'Value ', values.index(min), 'appeared', min, 'times'
+print("----")
+print('Value ', values.index(max), 'appeared', max, 'times')
+print('Value ', values.index(min), 'appeared', min, 'times')
 
 ent = 0.0
 for v in values:
@@ -47,7 +48,7 @@ for v in values:
         freq = float(v) / tot
         ent = ent + freq * math.log(freq, 2)
 ent = -ent
-print 'Entropy ', ent,'/8'
+print('Entropy ', ent,'/8')
 
 print
-print values
+print(values)
